@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Hardwiring ViT Patch Selectivity into CNNs using Patch Mixing</title>
+  
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+  <!-- Include MathJax script to render LaTeX -->
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Hardwiring ViT Patch Selectivity into CNNs using Patch Mixing</h1>
+<div class="is-size-5 publication-authors">
+  <!-- Paper authors -->
+  <span class="author-block">
+    <a href="https://www.linkedin.com/in/
+arielnlee/" target="_blank">Ariel N. Lee</a><sup>*</sup>
+  </span>
+  <span class="author-block">
+    <a href="https://gufaculty360.georgetown.edu/s/contact/0031Q00002cJxDQQA0/sarah-bargal" target="_blank">Sarah Adel Bargal</a><sup>§</sup>
+  </span>
+  <span class="author-block">
+    <a href="https://www.linkedin.com/in/janavikasera" target="_blank">Janavi Kasera</a><sup>*</sup>
+  </span>
+  <span class="author-block">
+    <a href="https://www.cs.bu.edu/fac/sclaroff/" target="_blank">Stan Sclaroff</a><sup>*</sup>
+  </span>
+  <span class="author-block">
+    <a href="https://www.bu.edu/cs/profiles/saenko/" target="_blank">Kate Saenko</a><sup>*º</sup>
+  </span>
+  <span class="author-block">
+    <a href="https://natanielruiz.github.io" target="_blank">Nataniel Ruiz</a><sup>*</sup>
+  </span>
+</div>
+<div class="is-size-5 publication-authors">
+<span class="author-block"><sup>* </sup>Boston University
+  </span>  
+<span class="author-block"><sup>§ </sup>Georgetown University
+  </span> 
+<span class="author-block"><sup>º </sup>FAIR
+  </span> 
+  </section>
+
+<!-- Teaser Image-->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div class="image-box-1">
+        <!-- Your image here -->
+        <img src="static/images/fig.jpg" alt="main"/>
+        <h2 class="subtitle has-text-centered">
+        </h2>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End teaser Image -->
+
+<!-- Info links -->
+<font size="+2">
+    <p style="text-align: center;">
+        <a href="https://www.example.com/paper.pdf">[Paper]</a> &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="https://www.example.com/bibtex.bib" target="_blank">[BibTeX]</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="https://huggingface.co/datasets/ariellee/Superimposed-Masked-Dataset" target="_blank">[Superimposed Masked Dataset]</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="https://huggingface.co/datasets/ariellee/Realistic-Occlusion-Dataset" target="_blank">[Realistic Occlusion Dataset]</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+        [Code (soon)] &nbsp;&nbsp;&nbsp;&nbsp;
+    </p>
+</font>
+<!-- End info links -->
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Vision transformers (ViTs) have significantly changed the computer vision landscape and have periodically exhibited superior performance in vision tasks compared to convolutional neural networks (CNNs). Although the jury is still out on which model type is superior, each has unique inductive biases that shape their learning and generalization performance. For example, ViTs have interesting properties with respect to early layer non-local feature dependence, as well as having self-attention mechanisms, which enable a more flexible learning process that allows them to more easily ignore out-of-context image information. We hypothesize that this power to ignore out-of-context information (which we name <strong>patch selectivity</strong>), while integrating in-context information in a non-local manner in early layers, allows ViTs to more easily handle occlusion. In this study, our aim is to see whether we can have CNNs <b>simulate</b> this ability of patch selectivity by effectively hardwiring this inductive bias using Patch Mixing data augmentation, which consists of inserting patches from another image onto a training image and interpolating labels between the two image classes. Specifically, we train state-of-the-art ViTs and CNNs using Patch Mixing and observe whether they improve on this capability of ignoring out-of-context patches and whether this improves their ability to handle natural occlusions. Surprisingly, we find that ViTs do not improve nor degrade when trained using Patch Mixing, but CNNs acquire new capabilities to ignore out-of-context information and improve on occlusion benchmarks, leaving us to conclude that this training method is a way of simulating in CNNs the abilities that ViTs already possess. We will release our Patch Mixing implementation and our proposed datasets for public use.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+<!-- Contributions -->
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns">
+      <div class="column">
+        <h2 class="title is-3">Contributions</h2>
+        <div class="content has-text-justified">
+          <ul>
+            <li>We find a previously undiscovered <strong>incontrovertible difference</strong> in performance between modern ViTs and CNNs: ViTs exhibit superior patch selectivity when out-of-context information is added to an image compared to CNNs.
+            <li>We show that by training CNNs using Patch Mixing, we simulate the natural ability of ViTs to <strong>ignore out-of-context information</strong>.</li>
+            <li>We prove that models with better patch selectivity tend to be <strong>more robust to natural occlusion</strong>. Specifically, we introduce two new challenging datasets to evaluate performance of image classifiers under occlusion: the Superimposed Masked Dataset (SMD) and the Realistic Occlusion Dataset (ROD). Our CNN models trained using Patch Mixing become more robust to occlusion in these, and other datasets. Both SMD and ROD are easily accessible via Hugging Face.</li>
+            <li>We propose a new explainability method, <strong>c-RISE</strong>: a contrastive version of RISE [Petsiuk et al., 2018] that allows for agnostic analysis of input sensibility under occlusion for both CNNs and Transformers. Using c-RISE we are able to measure patch selectivity and show that augmentation using Patch Mixing improves CNN patch selectivity.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div> 
+</section>
+<!-- End contributions -->
+
+
+<!-- Background -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns">
+      <div class="column"> 
+        <h2 class="title is-3">Background</h2>
+        <div class="content has-text-justified">
+          <p>
+			Unlike CNNs with receptive fields determined by kernel size and stride, ViTs leverage self-attention, allowing all pixels to be accessible from the get-go. This introduces an early-layer long-range dependency not structurally feasible in CNNs, even those with modern patchify stems. <strong>ViTs' hierarchical attention potentially makes them superior at discounting out-of-context image information compared to CNNs, which are burdened by structural and inductive biases</strong>.
+			
+			Our research scrutinizes this hypothesis, building on findings [Naseer et al., 2022] that demonstrated the superior capability of ViTs relative to older CNN architectures when handling simulated occlusion via patch drop experiments.
+			
+			We show that compared to modern convnets, ViTs experience a smaller decrease in accuracy when out-of-context patches are introduced. In the figure below, we see a larger decrease in accuracy in ConvNeXt compared to Swin, with a widening gap as information loss increases.           
+		 </p>
+        </div>
+        <div class="content">
+        <div class="image-box-1">
+            <figure>
+				<img src="static/images/patch_mixing_og_tiny_14.png" alt="Tiny Patch Mixing" style="width:40%; margin-right: 20px;">
+				<img src="static/images/patch_mixing_og_small_14.png" alt="Small Patch Mixing" style="width:40%; margin-left: 20px;">
+            </figure>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Background -->
+
+<!-- Patch Mixing -->
+<section class="section hero">
+  <div class="container is-max-desktop">
+      <div class="columns">
+          <div class="column">
+              <h2 class="title is-3">Patch Mixing</h2>
+              <div class="content has-text-justified">                    
+				<p>
+				Patch Mixing creates a new image-label pair, \((\tilde{x}, \tilde{y})_i\), from an image, \(x \in \mathbb{R}^{H \times W \times C}\), and its respective label, \(y\). This is achieved by merging patches from two images, \(x_A\) and \(x_B\). We form a mask, \(M \in {0, 1}^{N \times P^2 \times C}\), where \((H, W)\) is the original image resolution, \(C\) denotes channels, \((P, P)\) is each patch's resolution, and \(N = \frac{HW}{P^2}\) gives the number of patches. The mask is initially set to \(0\) and then we randomly choose \(N_1\) patches, setting them to \(1\). These patches replace their counterparts in image \(x_A\), with \(N_1\) dictated by a proportion hyperparameter \(r = N_1 / N\), which represents the proportion of replacement patches. We also blend labels \(y_A\) and \(y_B\) using proportion \(r\) to form \(\tilde{y}\) and smoothing the final vector with label smoothing [Szegedy et al., 2016]. Finally, \(\tilde{x}\) is generated as:
+				</p>
+                  <div class="image-box-1">
+                      <div style="display: flex; align-items: center; justify-content: center;">
+                          <div style="flex: 1; display: flex; justify-content: center;">
+                              <p class="math">
+                                  \[
+                                  \tilde{x} = (1 - M) \odot x_A + M \odot x_B
+                                  \]
+                              </p>
+                          </div>
+                          <div style="margin: 0 10px;">
+                              <p style="font-size: 2em; text-align: center;">→</p>
+                          </div>
+                          <div style="flex: 1; display: flex; justify-content: center;">
+                              <img style="width: 200px; height: 200px; object-fit: cover; object-position: center; border: 1px solid black;" 
+                                   src="static/images/patch_mixing_1.JPEG" 
+                                   alt="Image 8">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+<!-- End Patch Mixing -->
+
+
+<!-- Experiments -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns">
+      <div class="column">
+        <h2 class="title is-3">Experiments and Explainability</h2>
+        <div class="content has-text-justified">
+        <strong>Patch Mixing provides CNNs with patch selectivity capabilities similar to "out-of-the-box" Swin w.r.t. patch replacement attacks</strong><br><br>
+        <div class="content">
+        <div class="image-box-1" style="display: flex; justify-content: space-between; gap: 10px;">
+            <figure>
+                <img src="static/images/patchmix_attack_tiny_14.png" alt="Image 3" style="width:40%; margin-right: 20px">
+                <img src="static/images/patchmix_attack_small_14.png" alt="Image 4" style="width:40%; margin-left: 20px">
+                <figcaption>ConvNeXt trained with Patch Mixing matches Swin's performance and patch selectivity. Limited average improvement with Patch Mixing in Swin networks implies we are supplying an inductive bias that is already present in the architecture.</figcaption>
+            </figure>
+        </div>
+        </div>
+        <strong>Using Patch Mixing augmentation during training yields better spatial structure invariance in CNNs</strong><br><br>
+        <div class="content">
+            <div class="image-box-1" style="display: flex; justify-content: space-between; gap: 10px;">
+                <figure>
+                    <div style="display: flex;">
+                        <img src="static/images/patch_permutations_tiny.png" alt="" style="width:40%; margin-right: 10px;">
+                        <img src="static/images/patch_permutations_small.png" alt="" style="width:40%; margin-right: 30px;">
+                        <div style="display: flex; flex-direction: column; justify-content: space-between; width: 20%;">
+                            <img src="static/images/original-2.JPEG" alt="" style="height:45%; object-fit: cover; border: 1px solid black;">
+                            <img src="static/images/perm_mixed_4.JPEG" alt="" style="height:45%; object-fit: cover; border: 1px solid black;">
+                        </div>
+                    </div>
+                    <figcaption style="margin-top: 1em;">Above we see that the performance gap between original and Patch Mixing models increases with shuffle grid size, showing that Patch Mixing in CNNs results in context-independence and robustness to permutations on par with ViT models. An example patch permutation with shuffle grid size 16 can be seen on the right.</figcaption>
+                </figure>
+            </div>
+        </div>        
+        <strong>Patch Mixing improves robustness to occlusion for CNNs but not for ViTs</strong><br><br>
+        <div class="content">
+          <div class="image-box-1" style="display: flex; justify-content: space-between; gap: 10px;">
+              <figure>
+                  <img src="static/images/patch_drop_tiny_14.png" alt="Image 3" style="width:40%; margin-right: 20px">
+                  <img src="static/images/patch_drop_small_14.png" alt="Image 4" style="width:40%; margin-left: 20px">
+                  <figcaption>For random patch drop experiments, ConvNeXt trained with Patch Mixing outperforms the original, and in Tiny networks achieves the best result overall for all levels of information loss.</figcaption>
+              </figure>
+          </div>
+          </div>
+<strong>CNNs trained with Patch Mixing exhibit patch selectivity measurements rivaling that of ViTs</strong><br><br>
+<div class="content">
+    <div class="image-box-1">
+        <figure style="display: block;">
+            <img src="static/images/c-RISE.jpeg" alt="" style="width:100%; height:auto;">
+            <figcaption style="margin-top: 1em;">We illustrate the differences between the models' c-RISE heatmap appearances above. Specifically, in the top row (spider monkey) we can see how ConvNeXt Original's importance map <strong>spills</strong> from in-context to out-of-context patches due to the convolutional architecture, a phenomenon that is curbed by Patch Mixing. In the bottom row (airplane carrier), ConvNeXt with Patch Mixing better ignores occluders that are out-of-context in general, and it's importance maps mirror those of Swin.</figcaption>
+        </figure>
+    </div>
+</div>
+
+</section>
+<!-- End experiments -->
+
+
+
+<!-- Datasets -->
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns">
+      <div class="column">
+        <h2 class="title is-3">Superimposed Masked Dataset</h2>
+        <div class="content has-text-justified">
+          <p>
+            SMD is an occluded 
+            ImageNet-1K validation set meant to serve as an additional way to 
+            evaluate the impact of occlusion on model performance. 
+            This experiment used a variety of occluder objects that 
+            are not in the ImageNet-1K label space and are 
+            unambiguous in relationship to objects that reside in 
+            the label space. The occluder objects were segmented 
+            using Meta's Segment Anything [Kirillov et al., 2023]. In addition to images, we provide segmentation 
+            masks for reconstruction of occluder objects. 
+            We also release the code used to generate SMD, so our work can be 
+            easily replicated with other occluder objects and/or datasets. The occluders shown below from left to right, starting from the top row: <i>Grogu (baby yoda), bacteria, 
+            bacteriophage, airpods, origami heart, drone, diamonds 
+            (stones, not setting) and coronavirus</i>.
+          </p>
+        </div>
+<div class="image-box-1" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px">
+    <div style="display: flex; justify-content: space-between;">
+        <img style="width: 24%; object-fit: cover; object-position: center; border: 1px solid black;" src="static/images/smd1.png" alt="Image1">
+        <img style="width: 24%; object-fit: cover; object-position: center; border: 1px solid black;" src="static/images/smd2.png" alt="Image 2">
+        <img style="width: 24%; object-fit: cover; object-position: center; border: 1px solid black;" src="static/images/smd3.png" alt="Image 3">
+        <img style="width: 24%; object-fit: cover; object-position: center; border: 1px solid black;" src="static/images/smd4.png" alt="Image 4">
+    </div>
+    <div style="display: flex; justify-content: space-between;">
+        <img style="width: 24%; object-fit: cover; object-position: center; border: 1px solid black;" src="static/images/smd5.png" alt="Image 5">
+        <img style="width: 24%; object-fit: cover; object-position: center; border: 1px solid black;" src="static/images/smd6.png" alt="Image 6">
+        <img style="width: 24%; object-fit: cover; object-position: center; border: 1px solid black;" src="static/images/smd7.png" alt="Image 7">
+        <img style="width: 24%; object-fit: cover; object-position: center; border: 1px solid black;" src="static/images/smd8.png" alt="Image 8">
+    </div>
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns">
+      <div class="column">
+        <h2 class="title is-3">Realistic Occlusion Dataset</h2>
+        <div class="content has-text-justified">
+          <p>
+            ROD is the product of a meticulous object collection 
+			protocol aimed at collecting and capturing 40+ distinct 
+			objects from 16 classes. Occluder objects are wooden blocks 
+			or square pieces of cardboard, painted red or blue. 
+			The occluder object is added between the camera and 
+			the main object and its x-axis position is varied such 
+			that it begins at the left of the frame and ends at the 
+			right. The objects below from left to right, starting with the top row: <i>baseball, orange, spatula, banana, cowboy hat, dumbbell, skillet, and cup</i>.          </p>
+        </div>
+        <div class="image-box-1" style="display: flex; flex-direction: column; gap: 10px;">
+    <div style="display: flex; justify-content: space-between;">
+        <img style="width: 24%; object-fit: cover; object-position: center; border: 1px solid black;" src="static/images/rod1.jpg" alt="Image 1">
+        <img style="width: 24%; object-fit: cover; object-position: center; border: 1px solid black;" src="static/images/rod2.jpg" alt="Image 2">
+        <img style="width: 24%; object-fit: cover; object-position: center; border: 1px solid black;" src="static/images/rod3.jpg" alt="Image 3">
+        <img style="width: 24%; object-fit: cover; object-position: center; border: 1px solid black;" src="static/images/rod4.jpg" alt="Image 4">
+    </div>
+    <div style="display: flex; justify-content: space-between;">
+        <img style="width: 24%; object-fit: cover; object-position: center; border: 1px solid black;" src="static/images/rod5.jpg" alt="Image 5">
+        <img style="width: 24%; object-fit: cover; object-position: center; border: 1px solid black;" src="static/images/rod6.jpg" alt="Image 6">
+        <img style="width: 24%; object-fit: cover; object-position: center; border: 1px solid black;" src="static/images/rod7.jpg" alt="Image 7">
+        <img style="width: 24%; object-fit: cover; object-position: center; border: 1px solid black;" src="static/images/rod8.jpg" alt="Image 8">
+    </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End datasets -->
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>BibTex Here</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+    <footer class="footer">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column">
+                    <div class="content has-text-centered">
+                        <p> Website templates used: <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfries</a> and <a
+              href="https://dreambooth.github.io">Dreambooth</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+   
+  </body>
+  </html>
